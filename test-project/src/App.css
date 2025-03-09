@@ -33,10 +33,33 @@
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 }
 
+.image-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin: 1rem 0;
+}
+
 .artwork-info {
   width: 100%;
   text-align: left;
   padding: 1rem;
+}
+
+.info-row {
+  display: flex;
+  margin-bottom: 0.5rem;
+  align-items: baseline;
+}
+
+.info-label {
+  font-weight: bold;
+  width: 80px;
+  color: #888;
+}
+
+.info-value {
+  flex: 1;
 }
 
 .clickable-attribute {
@@ -48,6 +71,24 @@
 
 .clickable-attribute:hover {
   color: #535bf2;
+}
+
+.artwork-footer {
+  margin-top: 1.5rem;
+  width: 100%;
+  text-align: right;
+}
+
+.view-more-link {
+  color: #646cff;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+.view-more-link:hover {
+  color: #535bf2;
+  text-decoration: underline;
 }
 
 .ban-list {
@@ -84,6 +125,11 @@
   color: #646cff;
 }
 
+.ban-item-content {
+  display: flex;
+  align-items: center;
+}
+
 .remove-ban {
   background: none;
   border: none;
@@ -98,6 +144,20 @@
   color: #ff4040;
 }
 
+.clear-all-btn {
+  margin-top: 1rem;
+  width: 100%;
+  background-color: rgba(255, 100, 100, 0.1);
+  color: #ff6464;
+  border: 1px solid rgba(255, 100, 100, 0.3);
+  transition: all 0.3s;
+}
+
+.clear-all-btn:hover {
+  background-color: rgba(255, 100, 100, 0.2);
+  transform: translateY(-2px);
+}
+
 .error {
   color: #ff6464;
   margin: 1rem 0;
@@ -106,19 +166,56 @@
   border-radius: 5px;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
+.instruction {
+  color: #888;
+  font-style: italic;
+  margin-bottom: 2rem;
 }
 
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
+/* Loading animation */
+@keyframes pulse {
+  0% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.6;
+  }
 }
 
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.loading {
+  animation: pulse 1.5s infinite;
+}
+
+.loading-display {
+  width: 100%;
+  max-width: 800px;
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+  margin: 2rem 0;
+}
+
+.loading-spinner {
+  width: 48px;
+  height: 48px;
+  border: 5px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top-color: #646cff;
+  animation: spin 1s linear infinite;
+  margin-bottom: 1rem;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .card {
@@ -150,21 +247,4 @@ button:focus-visible {
 button:disabled {
   opacity: 0.5;
   cursor: not-allowed;
-}
-
-/* Loading animation */
-@keyframes pulse {
-  0% {
-    opacity: 0.6;
-  }
-  50% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0.6;
-  }
-}
-
-.loading {
-  animation: pulse 1.5s infinite;
 }
