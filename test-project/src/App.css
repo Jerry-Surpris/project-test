@@ -248,3 +248,48 @@ button:disabled {
   opacity: 0.5;
   cursor: not-allowed;
 }
+
+.history-list {
+  margin-top: 20px;
+}
+
+.history-list h3 {
+  margin-bottom: 10px;
+}
+
+.history-list ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.history-list li {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.history-item {
+  display: flex;
+  align-items: center;
+}
+
+.history-image {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  margin-right: 10px;
+}
+
+.history-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.history-title {
+  font-weight: bold;
+}
+
+.history-artist {
+  font-style: italic;
+  color: gray;
+}

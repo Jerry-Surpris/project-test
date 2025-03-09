@@ -1,12 +1,12 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import './App.css'
-import { useCallback } from 'react'
 
 function App() {
   const [artwork, setArtwork] = useState(null);
   const [loading, setLoading] = useState(true);
   const [banList, setBanList] = useState([]);
   const [error, setError] = useState(null);
+  const [history, setHistory] = useState([]); // New state for history
 
   // Fetch a random artwork with useCallback to avoid stale closures
   const fetchRandomArtwork = useCallback(async (retryCount = 0) => {
@@ -61,6 +61,7 @@ function App() {
       selectedArtwork.imageUrl = `https://www.artic.edu/iiif/2/${selectedArtwork.image_id}/full/843,/0/default.jpg`;
       
       setArtwork(selectedArtwork);
+      setHistory(prevHistory => [...prevHistory, selectedArtwork]); // Update history
     } catch (err) {
       console.error('Error fetching artwork:', err);
       setError('Failed to fetch artwork. Please try again.');
@@ -92,7 +93,7 @@ function App() {
 
   return (
     <div className="container">
-      <h1>Art Stumbler</h1>
+      <h1>Art Gallery</h1>
       <p>Discover random artwork from the Art Institute of Chicago</p>
       <p className="instruction">Click on any artwork attribute to ban it from future results</p>
       
@@ -218,6 +219,25 @@ function App() {
               Clear All Bans
             </button>
           )}
+        </div>
+      )}
+
+      {history.length > 0 && (
+        <div className="history-list">
+          <h3>Previously Viewed Artworks</h3>
+          <ul>
+            {history.map((item, index) => (
+              <li key={index}>
+                <div className="history-item">
+                  <img src={item.imageUrl} alt={item.title} className="history-image" />
+                  <div className="history-info">
+                    <div className="history-title">{item.title || 'Untitled'}</div>
+                    <div className="history-artist">{item.artist_title || 'Unknown'}</div>
+                  </div>
+                </div>
+              </li>
+            ))}
+          </ul>
         </div>
       )}
     </div>
